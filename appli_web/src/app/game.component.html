@@ -1,0 +1,8 @@
+<div *ngIf="game">
+    <h4>{{movies.name}}</h4>
+    <div>{{movies.director}} --- {{movies.critique}}</div>
+    <div>{{movies.cast}} </div>
+    <div>  <img src="{{movies.affiche}}"/></div>
+    <div>{{movies.synopsis}}</div>
+    <div><iframe width="300px"  [src]="movies.url |safe"></iframe></div>
+</div>

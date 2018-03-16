@@ -1,0 +1,64 @@
+
+
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="item" *ngFor="let game of videoGames;" (click)="gotoDetail(game)">
+                <a>{{game.VG_Name}}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+<table class="panel panel-default">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>icon match</th>
+                <th>Match</th>
+                <th>Odds 1</th>
+                <th>Odds 2</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let info of infoGame;" (click)="gotoDetail(info)">
+                <td></td>
+                <td><a href="infogame.component.html" data-toggle="tooltip" data-placement="bottom" title="Tournament">{{info.Matchs_Name}}</a></td>
+                <td> {{info.Matchs_Odds_1}}</td>
+                <td>{{info.Matchs_Odds_2}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</table>
+</div>
+<div class="container">
+    <table class="panel panel-default">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id Tournament</th>
+                <th>Tournament</th>
+                <th>Date</th>
+                <th>Hour</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tourn of tournament;" (click)="gotoDetail(tourn)">
+                <td>{{tourn.Tournament_Id}}</td>
+                <td> {{tourn.Tournament_Name}} </td>
+                <td> {{tourn.Tournament_Date}}</td>
+                <td>{{tourn.Tournament_Hour}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </table>
+</div>
+<router-outlet></router-outlet>
+
