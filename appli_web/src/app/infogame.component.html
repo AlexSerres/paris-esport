@@ -1,14 +1,5 @@
-
-<!--<div class="container">-->
-    <!--<ul class="nav nav-pills nav-stacked" *ngFor="let tourn of tourns">-->
-                <!--<li></li>-->
-                <!--<li> {{tourn.name}}</li>-->
-                <!--<li> {{tourn.date}}</li>-->
-                <!--<li> {{tourn.hour}}</li>-->
-    <!--</ul>-->
-
-<!--</div>-->
-
+<!--Page pour chaque onglets de la navbar du menu principal-->
+<!-- Menu Tournament -->
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
@@ -23,7 +14,7 @@
                         </button>
                         <span class="visible-xs navbar-brand">Tournament menu</span>
                     </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse" *ngFor="let tourn of tourns">
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse" *ngFor="let tourn of tourns" (click)="gotoDetailOneVideoGame(game)">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">{{tourn.name}}</a></li>
                         </ul>
@@ -36,22 +27,22 @@
                     <!--<table class="panel panel-default">-->
                     <table class="table">
                         <thead>
-                        <tr>
-                            <th>icon match</th>
-                            <th>Match</th>
-                            <th>Best of</th>
-                            <th>1</th>
-                            <th>2</th>
-                        </tr>
+                            <tr>
+                                <th>Match</th>
+                                <th>Best of</th>
+                                <th>1</th>
+                                <th>2</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor="let match of matches">
-                            <td></td>
-                            <td>{{match.name}}</td>
-                            <td>{{match.bestof}}</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                            <tr *ngFor="let match of matches">
+                                <td><a [routerLink]="['/detailmatch/',  match._id]" data-toggle="tooltip" data-placement="bottom" title="{{match._id}}">{{match.name}}</a></td>
+                                <td>{{match.bestof}}</td>
+
+                                <td>{{match.odds[0]?.value[0]}}</td>
+
+                                <td>{{match.odds[0]?.value[1]}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 <!--</table>-->

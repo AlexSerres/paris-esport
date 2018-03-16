@@ -1,35 +1,76 @@
-exports = module.exports = function(connection){
+module.exports = (function(){
     var router = require('express').Router();
+    var modMatch = require('./../models/match.js');
+    var modOdd = require('./../models/odd.js')
+    var modTourn = require('./../models/tournament.js')
     
     router.get('/matchs', function(req, res){
         res.setHeader('Content-Type', 'application/json');
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+        var json;
 
-        connection.query('SELECT Matchs_Id, Matchs_Name, Matchs_Odds_1, Matchs_Odds_2, matchs.Tournament_Id FROM matchs INNER JOIN tournament ON matchs.Tournament_Id = '+
-        'tournament.Tournament_Id', function(err, rowsMatc, fields) {
-            if (!err){
+        modMatch.find({},function(err, match){
+            if(!err){
+                //console.log(match);
+                json = JSON.parse(JSON.stringify(match));
                 console.log('Connection entrante sur la route /Matchs');
-                temp = JSON.stringify(rowsMatc);
-                temp2 = JSON.parse(temp);
-                console.log(temp2);
-
-                for(i = 0; i < temp2.length; i++){
-                    connection.query('SELECT * FROM tournament WHERE Tournament_Id = ' + temp2[i].Tournament_Id, function(err,rowsTour,fields){
-                        temp3 = JSON.stringify(rowsTour);
-                        temp4 = JSON.parse(temp3);
-                        console.log(temp4);
-                    });
-                }
                 
-                res.status(200).send(JSON.stringify(rowsMatc));
+                console.log(json);
+                console.log('--------------');
+                console.log(json[0].tournament + json[1].tournament);
+                console.log('--------------');
+                
+              /*  for(var i=0; i < json.length; i++){
+                    modTourn.find({_id: json[i].tournament}, (function(err, tourn){                        
+                        console.log('TOURN : ' + json[i].tournament);
+                        console.log(tourn);
+                        json[i].tournament = tourn;
+                        console.log('-------------');
+                        console.log(json[i].tournament);
+                        modOdd.find({_id: json[i].odds}, (function(err, odds){
+                            json[i].odds = odds
+                            console.log('-------------');
+                            console.log(json[i].odds);
+                        }()))                       
+                    }()))
+                }
+                res.status(200).send(json);*/
+
+               /* */
+                /*
+                 modTourn.find({_id: json[0].tournament}, (function(err, tourn){                        
+                        console.log('TOURN : ' + json[0].tournament);
+                        json[0].tournament = tourn;
+                        console.log('-------------');
+                        console.log(json[0].tournament);
+                        modOdd.find({_id: json[0].odds}, (function(err, odds){
+                            json[0].odds = odds
+                            console.log('-------------');
+                            console.log(json[0].odds);
+                            res.status(200).send(json)
+                        }))                       
+                    }))
+                */
             }
             else{
                 res.status(400).send();
             }
-        });
-    });
+        })
 
+        for(var i = 0; i < json.length; i++){
+            modTourn.find({_id: json[i].tournament}, function(err,tourn){
+                console.log(tourn);
+            })
+        }
+
+
+
+
+
+
+    });
+/*
     router.get('/matchs/:idMatchs', function(req,res){
         res.setHeader('Content-Type', 'application/json');
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -61,6 +102,6 @@ exports = module.exports = function(connection){
             }
         });
     });
-
+*/
     return router;
-};
+})();

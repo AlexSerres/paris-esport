@@ -3,14 +3,15 @@
  */
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private localstorage: LocalStorageService) { }
 
     canActivate() {
-        if (localStorage.getItem('currentUser')) {
+        if (this.localstorage.get('currentUser')) {
             // logged in so return true
             return true;
         }

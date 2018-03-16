@@ -1,0 +1,126 @@
+<div class="pane-conatent">
+    <div class="outright-events">
+        <div class="event-markets-container">
+            <!--Condition 1-->
+            <div class="market-wrapper" data-title="paris-win" *ngFor="let detailOdds of detailOdd">
+                <!--Condition 2-->
+                <div *ngFor="let detailMatchs of detailMatch">
+                   <!--Table-->
+                    <div class="col-sm-9 pr-0">
+                        <div class="table--header" colspan="2">
+                            <table class="table table-bordered table--fixed mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" class="table--info">{{detailOdds?.condi}}</td>
+                                    </tr>
+                                    <tr>
+                                        <!--1 part left of table-->
+                                        <td>
+                                            <span class="outcome-name">{{detailMatchs.teams[0]?.name}}</span>
+                                            <span class="handicap-value" data-ev_mkt_id="11605149" data-sort=""></span>
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                                        data-target="#Modal1">{{detailOdds?.value[0]}}<!--Appel du modal-->
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="Modal1" role="dialog">	
+                                                    <div class="modal-dialog ">
+                                                        <!-- Modal content-->	
+                                                        <div class="modal-content">	
+                                                            <div class="modal-header">	
+                                                                <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>	
+                                                                <h4 class="modal-title">My bet</h4>	
+                                                            </div>
+                                                            <form (ngSubmit)="submitPari()">
+                                                                <div class="modal-body">	
+                                                                    <span>{{detailMatchs.teams[0]?.name}}	
+                                                                    <div class="pull-right">	
+                                                                        {{detailOdds.value[0]}}	
+                                                                    </div></span><br><br>	
+                                                                    Pari :	
+                                                                    <input type="number" value="0.00" min="1" max="1000"	
+                                                                        [(ngModel)]="calcul"	
+                                                                        (change)="calculateGame(detailOdds.value[0])"	
+                                                                        name="calcul"><br>
+                                                                    <div class="pull-right">	
+                                                                        Gain : {{result}}
+                                                                    </div>
+                                                                    <br><br>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button [disabled]="loading" class="btn btn-default" 
+                                                                            >Accept Changes
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Close
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!--2-->
+                                        <td><span class="outcome-name">{{detailMatchs.teams[1]?.name}}</span>
+                                            <span class="handicap-value" data-ev_mkt_id="11605149" data-sort=""></span>
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                                        data-target="#Modal2">{{detailOdds?.value[1]}}
+                                                </button>
+                                                <div class="modal fade" id="Modal2" role="dialog">	
+                                                    <div class="modal-dialog ">
+                                                        <!-- Modal content-->	
+                                                        <div class="modal-content">	
+                                                            <div class="modal-header">	
+                                                                <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>	
+                                                                <h4 class="modal-title">My bet</h4>	
+                                                            </div>
+                                                            <form (ngSubmit)="submitPari()">
+                                                                <div class="modal-body">	
+                                                                    <span>{{detailMatchs.teams[1]?.name}}	
+                                                                    <div class="pull-right">	
+                                                                        {{detailOdds.value[1]}}	
+                                                                    </div></span><br><br>	
+                                                                    Pari :	
+                                                                    <input type="number" value="0.00" min="1" max="1000"	
+                                                                        [(ngModel)]="calcul"	
+                                                                        (change)="calculateGame(detailOdds.value[1])"	
+                                                                        name="calcul"><br>
+                                                                    <div class="pull-right">	
+                                                                        Gain : {{result}}
+                                                                    </div>
+                                                                    <br><br>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button [disabled]="loading" class="btn btn-default"
+                                                                            data-dismiss="modal">Accept Changes
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Close
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<onePariModal 
+    [selectedDetailMatchs]="detailMatchs" 
+    [selectedDetailOdds]="detailOdds">
+</onePariModal>-->

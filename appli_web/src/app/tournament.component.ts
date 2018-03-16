@@ -5,8 +5,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TournamentService } from './tournament.service';
-import { Tournament } from './tournament';
+import { TournamentService } from './_services/tournament.service';
+import { Tournament } from './_models/index';
 
 
 @Component({

@@ -5,14 +5,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { VideoGamesService } from './_services/videoGames.service';
-import {VideoGames} from './videoGames';
-import {InfoGame} from './infogame';
-import {InfoGameService} from './infogame.service';
-import {Tournament} from './tournament';
-import {TournamentService} from './tournament.service';
+import {VideoGames} from './_models/index';
+import {InfoGame} from './_models/index';
+import {InfoGameService} from './_services/infogame.service';
+import {Tournament} from './_models/index';
+import {TournamentService} from './_services/tournament.service';
 
-//import { User } from '../_models/index';
-//import { UserService } from '../_services/index';
+import { User } from './_models/index';
+import { UserService } from './_services/index';
 
 
 @Component({
@@ -31,14 +31,14 @@ export class VideoGamesComponent implements OnInit {
 
     private tournament : Tournament[];
     selectedTournament : Tournament[]=[];
-  //  users: User[] = [];
+    users: User[] = [];
 
     constructor(
         private router: Router,
         private videoGamesService: VideoGamesService,
         private infoGameService: InfoGameService,
         private tournamentService: TournamentService,
- //       private userService: UserService
+        private userService: UserService
     ) {}
 
     getVideoGames(): void {
@@ -56,20 +56,19 @@ export class VideoGamesComponent implements OnInit {
             this.tournament=data});
     }
 
+    getUsers(): void {
+        this.userService.getUsers().subscribe(data => {
+            this.users = data});
+    }
+
     ngOnInit(): void {
         this.getVideoGames();
         this.getInfoGame();
         this.getTournament();
+        this.getUsers();
     }
-
 
     onSelect(videoGames: VideoGames[]):void{
         this.selectedVideoGames = videoGames;
     }
-
-    gotoDetailOneVideoGame(videoGames: VideoGames): void {
-        console.log(videoGames);
-        this.router.navigate(['/detailgame', videoGames._id]);
-    }
-
 }

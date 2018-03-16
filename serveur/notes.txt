@@ -1,0 +1,115 @@
+{
+    "id": 3174,
+    "tournament_id": 219,
+    "name": "KGN-vs-MIL",
+    "begin_at": "2017-02-18T23:00:00.000Z",
+    "results": null,
+    "videogame": {
+      "id": 1,
+      "name": "League of Legends",
+      "slug": "league-of-legends"
+    },
+    "tournament": {
+      "id": 219,
+      "name": "Regular Season",
+      "slug": "regular-season",
+      "winner_id": null,
+      "begin_at": null,
+      "end_at": null
+    },
+    "winner": null,
+    "games": [
+      {
+        "id": 6156,
+        "position": 2,
+        "length": 0,
+        "begin_at": null,
+        "finished": false,
+        "winner": null
+      },
+      {
+        "id": 6159,
+        "position": 1,
+        "length": 0,
+        "begin_at": null,
+        "finished": false,
+        "winner": null
+      }
+    ],
+    "opponents": [
+      {
+        "id": 349,
+        "type": "Team",
+        "opponent": {
+          "id": 349,
+          "foreign_id": null,
+          "name": "Team Kinguin",
+          "acronym": "KGN",
+          "image": {
+            "url": null,
+            "thumb": {
+              "url": null
+            }
+          },
+          "created_at": "2017-02-01T12:07:32.059+01:00",
+          "updated_at": "2017-02-13T12:29:52.558+01:00",
+          "team_lol_uuid": null,
+          "slug": "team-kinguin",
+          "reviewed_at": null,
+          "description": null
+        }
+      },
+      {
+        "id": 175,
+        "type": "Team",
+        "opponent": {
+          "id": 175,
+          "foreign_id": null,
+          "name": "Millenium",
+          "acronym": "MIL",
+          "image": {
+            "url": "https://pandacdn.blob.core.windows.net/cdn/uploads/open-uri20160803-18976-p1mpkt",
+            "thumb": {
+              "url": "https://pandacdn.blob.core.windows.net/cdn/uploads/thumb_open-uri20160803-18976-p1mpkt"
+            }
+          },
+          "created_at": "2016-02-09T12:21:32.805+01:00",
+          "updated_at": "2017-02-13T12:30:02.923+01:00",
+          "team_lol_uuid": null,
+          "slug": "millenium",
+          "reviewed_at": null,
+          "description": null
+        }
+      }
+    ]
+  }
+
+
+  API Key Pandascore : {"email":"alexandre.serres@imerir.com","name":null,"subscription":null,"token":"f8TBfOmHB5oFt7Tb65GLxw421blNyraIdJ-kcKvgMZwFlzpiLts"}
+
+
+
+  LOL : RGAPI-07dfe738-dbe4-49fd-8507-769e8c6a473f      https://developer.riotgames.com/api/methods#!/1057/3643
+       Rate Limit(s):  10 requests every 10 seconds    500 requests every 10 minutes
+
+
+       app.get('/VideoGames/:idGames/Tournament', function(req, res){
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+
+    connection.query('SELECT * FROM Tournament WHERE VG_Id = ' + req.params.idGames, function(err, rows, fields){
+      if (!err){
+        res.write(JSON.stringify(rows));
+        res.end();
+      }
+      else{
+        res.end('Error' + err);
+      }
+    });
+});
+
+
+
+tournament.Tournament_Date > CURRENT_DATE() pour avoir que les evenements futurs

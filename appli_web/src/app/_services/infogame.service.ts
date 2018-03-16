@@ -9,14 +9,30 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { InfoGame } from '../infogame';
+import { InfoGame } from '../_models/index';
 
 @Injectable()
 export class InfoGameService {
-    private infoGUrl = 'http://172.30.1.175:8080/';  // URL to web API
+    // private infoGUrl = 'http://172.30.1.175:7070/';  // URL to web API
+    private infoGUrl = 'http://192.168.0.11:7070/';
     constructor (private http: Http) {}
+
+
     getInfoGame (): Observable<InfoGame[]> {
         return this.http.get(this.infoGUrl+"Matchs")
             .map((response: Response) => response.json());
     }
+
+    getOneGame(id: number): Observable<InfoGame[]>{
+        return this.http.get(this.infoGUrl+"videogames/" + id + "/matchs")
+            .map((response: Response) => response.json());
+    }
+
+    getOneTourn(id: number): Observable<InfoGame[]>{
+        return this.http.get(this.infoGUrl+"videogames/" + id + "/tournaments")
+            .map((response: Response) => response.json());
+    }
+
+
+
 }

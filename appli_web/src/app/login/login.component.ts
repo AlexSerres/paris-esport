@@ -1,7 +1,13 @@
+/**
+ * Created by Lindsay on 27/02/2017.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 import { AuthenticationService } from '../_services/index';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
     moduleId: module.id,
@@ -28,6 +34,7 @@ export class LoginComponent implements OnInit {
             .subscribe(result => {
                 if (result === true) {
                     this.router.navigate(['/']);
+                    this.authenticationService.setConnected(true);
                 } else {
                     this.error = 'Username or password is incorrect';
                     this.loading = false;
@@ -35,6 +42,3 @@ export class LoginComponent implements OnInit {
             });
     }
 }
-/**
- * Created by Lindsay on 27/02/2017.
- */

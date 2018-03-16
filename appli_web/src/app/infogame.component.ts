@@ -2,11 +2,11 @@
  * Created by Lindsay on 22/02/2017.
  */
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
-import { InfoGameService } from './infogame.service';
-import { InfoGame } from './infogame';
+import { InfoGameService } from './_services/infogame.service';
+import { InfoGame } from './_models/index';
 
 
 @Component({
@@ -20,6 +20,11 @@ import { InfoGame } from './infogame';
 export class InfoGameComponent implements OnInit {
     private matches : InfoGame[];
     private tourns : InfoGame[];
+
+    private infoGame : InfoGame[];
+    selectedInfoGame : InfoGame[]=[];
+
+    private detailMatch : InfoGame[];
     selectedinfoGame: InfoGame[] = [];
     id: String;
 
@@ -37,36 +42,30 @@ export class InfoGameComponent implements OnInit {
         this.infoGameService.getOneTourn(id).subscribe(data => {
             this.tourns = data;
         });
-    }
 
+        // this.infoGameService.getOneDetailMatch(id).subscribe(data => {
+        //    this.detailMatch = data;
+        // });
+    }
+    //
+    // gotoDetailMatch(infoGame: InfoGame): void {
+    //     console.log(infoGame);
+    //     this.router.navigate(['/detailmatch', infoGame._id]);
+    // }
 
     ngOnInit(): void {
-
+        //on recupere les id des clics
         this.route.params.forEach((params: Params) => {
            // let id = +params['id'];
             var id = this.route.snapshot.params['id'];
             this.infoGameService.getOneGame(id)
-                .subscribe(match => {this.matches = match; console.log("mon match"+this.matches)});
+                .subscribe(match => {this.matches = match; console.log(this.matches)});
             console.log("ID game : "+ id, this.matches);
 
             this.infoGameService.getOneTourn(id)
                 .subscribe(tourn => {this.tourns = tourn; console.log("mon tournament"+this.tourns)});
             console.log("ID tournament : "+ id, this.tourns);
-    });
-
-        // this.route.params.forEach((params: Params) => {
-        //     var id = this.route.snapshot.params['id'];
-        //     this.infoGameService.getOneGameT(id)
-        //         .subscribe(tourn => {this.tourns = tourn; console.log("mon tournament"+this.tourns)});
-        //     console.log("ID tourns : "+ id, this.tourns);
-        // });
-
-
-
-
-        // console.log(id);
-        //getOneGameT
-       // this.getInfoGame(id);
+        });
 
     }
     goBack(): void {
