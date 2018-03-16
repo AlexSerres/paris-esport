@@ -1,23 +1,62 @@
-<!--
-<div id="listGames">
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand"></a>
-            </div>
-            <div *ngFor="let info of infoGame;" (click)="gotoDetail(info)" class="container-fluid">
-                <ul class="nav navbar-nav">
-                    {{info.Matchs_Name}}
-                    {{info.Matchs_Odds_1}}
-                    {{info.Matchs_Odds_2}}
-                    {{info.Tournament_Id}}
-                </ul>
+<!--<div class="container">-->
+    <!--<ul class="nav nav-pills nav-stacked" *ngFor="let tourn of tourns">-->
+                <!--<li></li>-->
+                <!--<li> {{tourn.name}}</li>-->
+                <!--<li> {{tourn.date}}</li>-->
+                <!--<li> {{tourn.hour}}</li>-->
+    <!--</ul>-->
+
+<!--</div>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="sidebar-nav">
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="visible-xs navbar-brand">Tournament menu</span>
+                    </div>
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse" *ngFor="let tourn of tourns">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">{{tourn.name}}</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="container"></div>
-
+        <div class="col-sm-9">
+            <!--<div class="container">-->
+                    <!--<table class="panel panel-default">-->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>icon match</th>
+                            <th>Match</th>
+                            <th>Best of</th>
+                            <th>1</th>
+                            <th>2</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let match of matches">
+                            <td></td>
+                            <td>{{match.name}}</td>
+                            <td>{{match.bestof}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                <!--</table>-->
+            <!--</div>-->
+        </div>
+    </div>
 </div>
-<router-outlet></router-outlet> -->
 

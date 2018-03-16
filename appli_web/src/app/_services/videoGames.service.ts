@@ -13,7 +13,7 @@ import { VideoGames } from '../videoGames';
 
 @Injectable()
 export class VideoGamesService {
-    private videoGUrl = 'http://172.30.1.175:8080/';  // URL to web API
+    private videoGUrl = 'http://172.30.1.175:7070/';  // URL to web API
     constructor (private http: Http) {}
 
     getVideoGames (): Observable<VideoGames[]> {
@@ -21,5 +21,8 @@ export class VideoGamesService {
             .map((response: Response) => response.json());
     }
 
-    
+   /*  getVideoGamesId(id: number){
+        return this.getVideoGames()
+            .subscribe(videoGames => videoGames.filter(videogame => videogame.testid===id));
+    }*/
 }

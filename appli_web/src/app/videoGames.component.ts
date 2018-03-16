@@ -61,12 +61,15 @@ export class VideoGamesComponent implements OnInit {
         this.getInfoGame();
         this.getTournament();
     }
-    /*
-    getInfoGame(): void {
-        this.infoGameService.getInfoGame().subscribe(content => this.selectedInfoGame = content);
+
+
+    onSelect(videoGames: VideoGames[]):void{
+        this.selectedVideoGames = videoGames;
     }
 
-    gotoDetail(infoGame :InfoGame): void {
-        this.infoGameService.getInfoGameId(infoGame.id).then(content => this.selectedInfoGame = content);
-    }*/
+    gotoDetailOneVideoGame(videoGames: VideoGames): void {
+        console.log(videoGames);
+        this.router.navigate(['/detailgame', videoGames._id]);
+    }
+
 }

@@ -1,3 +1,4 @@
+
 /**
  * Created by Lindsay on 06/03/2017.
  */
@@ -18,6 +19,7 @@ import { Tournament } from './tournament';
 export class TournamentComponent implements OnInit {
     private tournament : Tournament[];
     selectedtournament: Tournament[] = [];
+
     constructor(
         private router: Router,
         private tournamentService: TournamentService) {}

@@ -12,6 +12,7 @@ import {InfoGameComponent} from './infogame.component';
 import {InfoGameService} from './infogame.service';
 import {TournamentComponent} from './tournament.component';
 import {TournamentService} from './tournament.service';
+//import { MatchDetailComponent} from './match-detail.component';
 
 import {HttpModule} from "@angular/http";
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
@@ -22,9 +23,11 @@ import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
   imports:      [ BrowserModule,
                   AppRoutingModule, HttpModule
                 ],
+
   declarations: [ AppComponent,
-                  VideoGamesComponent,InfoGameComponent,TournamentComponent
+                  VideoGamesComponent,InfoGameComponent,TournamentComponent //,MatchDetailComponent
                 ],
+
   providers:[ VideoGamesService, InfoGameService, TournamentService ],
   bootstrap:    [ AppComponent ]
 })

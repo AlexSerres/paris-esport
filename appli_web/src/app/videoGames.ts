@@ -2,6 +2,6 @@
  * Created by Lindsay on 20/02/2017.
  */
 export class VideoGames {
-    id: number;
+    _id: number;
     name: string;
 }

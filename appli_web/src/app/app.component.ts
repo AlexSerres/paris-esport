@@ -1,4 +1,14 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { VideoGamesService } from './_services/videoGames.service';
+import {VideoGames} from './videoGames';
+import {InfoGame} from './infogame';
+import {InfoGameService} from './infogame.service';
+
+
+
 
 @Component({
 
@@ -17,7 +27,7 @@ import { Component } from '@angular/core';
     }
     </style>
     <div class="navbar-header">
-      <a class="navbar-brand">{{name}}</a>
+      <a class="navbar-brand">{{Sname}}</a>
     </div>
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
@@ -31,7 +41,44 @@ import { Component } from '@angular/core';
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Info! </strong>To reach in bets, you must be connected.
 </div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="item" *ngFor="let game of videoGames;" (click)="gotoDetailOneVideoGame(game)">
+                <a>{{game.name}}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <router-outlet></router-outlet>
 `,
 })
-export class AppComponent  { name = 'SaweSport'; }
+export class AppComponent  { Sname = 'SaweSport';
+
+  private videoGames : VideoGames[];
+  selectedVideoGames: VideoGames[] = [];
+
+  constructor(
+      private router: Router,
+      private videoGamesService: VideoGamesService,
+
+  ) {}
+
+  getVideoGames(): void {
+    this.videoGamesService.getVideoGames().subscribe(data => {
+      this.videoGames = data});
+  }
+
+  ngOnInit(): void {
+    this.getVideoGames();
+
+  }
+
+  gotoDetailOneVideoGame(videoGames: VideoGames): void {
+    this.router.navigate(['/detailgame', videoGames._id]);
+  }
+
+
+}

@@ -1,16 +1,4 @@
 
-
-
-
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li class="item" *ngFor="let game of videoGames;" (click)="gotoDetail(game)">
-                <a>{{game.VG_Name}}</a>
-            </li>
-        </ul>
-    </div>
-</nav>
 <div class="container">
 <table class="panel panel-default">
     <table class="table">
@@ -18,18 +6,20 @@
             <tr>
                 <th>icon match</th>
                 <th>Match</th>
-                <th>Odds 1</th>
-                <th>Odds 2</th>
-
+                <th>Best of</th>
+                <th>1</th>
+                <th>2</th>
             </tr>
         </thead>
         <tbody>
 
-            <tr *ngFor="let info of infoGame;" (click)="gotoDetail(info)">
+            <tr *ngFor="let info of infoGame;" (click)="gotoDetailOneVideoGame(info._id)">
                 <td></td>
-                <td><a href="infogame.component.html" data-toggle="tooltip" data-placement="bottom" title="Tournament">{{info.Matchs_Name}}</a></td>
-                <td> {{info.Matchs_Odds_1}}</td>
-                <td>{{info.Matchs_Odds_2}}</td>
+                <td><a href="infogame.component.html" data-toggle="tooltip" data-placement="bottom" title="{{info._id}}">{{info.name}}</a></td>
+                <td> {{info.bestof}}</td>
+                <td><!-- <button type="button">{{info.odds[0].value[0]}}</button>--></td>
+
+                <td> <!--<button type="button">{{info.odds[0].value[1]}}</button>--></td>
             </tr>
 
         </tbody>
@@ -41,19 +31,21 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id Tournament</th>
+                <th>#</th>
                 <th>Tournament</th>
                 <th>Date</th>
                 <th>Hour</th>
+                <th>Video Game</th>
 
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let tourn of tournament;" (click)="gotoDetail(tourn)">
-                <td>{{tourn.Tournament_Id}}</td>
-                <td> {{tourn.Tournament_Name}} </td>
-                <td> {{tourn.Tournament_Date}}</td>
-                <td>{{tourn.Tournament_Hour}}</td>
+                <td>{{tourn._id}}</td>
+                <td> {{tourn.name}} </td>
+                <td> {{tourn.date}}</td>
+                <td>{{tourn.hour}}</td>
+                <td> {{tourn.videogame}}</td>
             </tr>
 
             </tbody>
